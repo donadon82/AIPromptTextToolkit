@@ -30,7 +30,7 @@
         <p class="text-slate-400 text-xs max-w-xl mx-auto">Làm sạch văn bản, đếm token và tự động nâng cấp câu lệnh chuyên nghiệp cho ChatGPT, Claude, DeepSeek.</p>
     </header>
 
-    <!-- KHU VỰC CÔNG CỤ CHÍNH (GIAO DIỆN 3 CỘT ĐẸP MẮT - ĐÃ LỌC KHỐI TRÙNG) -->
+    <!-- KHU VỰC CÔNG CỤ CHÍNH (GIAO DIỆN 3 CỘT ĐẸP MẮT) -->
     <main class="max-w-7xl mx-auto w-full px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow">
         
         <!-- CỘT 1: LÀM SẠCH VĂN BẢN (TEXT CLEANER) -->
@@ -96,7 +96,7 @@
         </div>
     </main>
 
-    <!-- VÙNG HIỂN THỊ TRẠNG THÁI & THÔNG BÁO -->
+    <!-- VÙNG HIỂN THỊ TRẠNG THÁI & THÔNG BÁO (TOAST MESSAGE) -->
     <section class="max-w-7xl mx-auto w-full px-4 mb-4">
         <div id="toast-message" class="hidden p-3 bg-slate-950 border rounded-lg text-xs font-mono text-center transition-all"></div>
     </section>
@@ -117,7 +117,7 @@
         &copy; 2026 AI Prompt & Text Toolkit. Các tác vụ chạy 100% Client-side bằng JavaScript ẩn danh bảo mật.
     </footer>
 
-    <!-- LỚP XỬ LÝ LOGIC JAVASCRIPT THUẦN HOÀN CHỈNH -->
+    <!-- LỚP XỬ LÝ LOGIC JAVASCRIPT THUẦN (CLIENT-SIDE) -->
     <script>
         // Cập nhật số lượng ký tự đầu vào theo thời gian thực
         function updateStats(inputId, statsId) {
@@ -154,3 +154,118 @@
         function showToast(message, borderClass) {
             const toast = document.getElementById('toast-message');
             if (toast) {
+toast.className = `p-3 bg-slate-950 border rounded-lg text-xs font-mono text-center transition-all ${borderClass}`;
+toast.innerText = message;
+toast.classList.remove('hidden');
+
+if (window\.toastTimeout) clearTimeout(window\.toastTimeout);
+window\.toastTimeout = setTimeout(() => {
+toast.classList.add('hidden');
+}, 3000);
+}
+}
+
+// [LOGIC CỘT 1]: Làm sạch định dạng khoảng trắng và dọn dòng trống thừa
+function executeClean() {
+const input = document.getElementById('input-clean').value;
+const output = document.getElementById('output-text');
+
+if (!input.trim()) {
+showToast("⚠️ Vui lòng cung cấp văn bản thô tại Cột 1 trước khi xử lý!", "border-amber-700 text-amber-400");
+return;
+}
+
+let cleaned = input.split('\n').map(line => line.trim()).filter(line => line !== '').join('\n');
+output.value = cleaned;
+calculateTokens(cleaned);
+showToast("✨ Đã chuẩn hóa văn bản sạch sẽ!", "border-cyan-800 text-cyan-400");
+
+// KÍCH HOẠT KIẾM TIỀN: Bung tab quảng cáo liên kết Linkvertise của bạn
+window\.open("direct-link.net", "\_blank");
+}
+
+// [LOGIC CỘT 2]: Cấu trúc và đóng khung hệ thống câu lệnh theo Phân vai AI (Role)
+function executeOptimizePrompt() {
+const input = document.getElementById('input-prompt').value;
+const role = document.getElementById('prompt-role').value;
+const output = document.getElementById('output-text');
+
+if (!input.trim()) {
+showToast("⚠️ Hãy nhập ý tưởng hoặc câu lệnh cốt lõi tại Cột 2!", "border-amber-700 text-amber-400");
+return;
+}
+
+let roleContext = "";
+switch (role) {
+case "expert":
+roleContext = "Bạn là một Chuyên Gia Tổng Hợp thông tin cao cấp với khả năng tư duy đa chiều, đúc kết vấn đề cốt lõi một cách logic, ngắn gọn và sắc bén.";
+break;
+case "coder":
+roleContext = "Bạn là một Lập Trình Viên Cao Cấp (Senior Fullstack Engineer). Hãy phân tích cấu trúc, tối ưu hóa hiệu năng và viết mã nguồn sạch (Clean Code), bảo mật, có kèm giải thích chi tiết.";
+break;
+case "copywriter":
+roleContext = "Bạn là một Nhà Văn / Copywriter chuyên nghiệp với văn phong lôi cuốn, có tính thuyết phục cao, thấu hiểu tâm lý khách hàng và tối ưu hóa tỷ lệ chuyển đổi.";
+break;
+case "analyst":
+roleContext = "Bạn là một Nhà Phân Tích Dữ Liệu chuyên sâu. Hãy bóc tách các chỉ số, tìm ra quy luật, xu hướng quan trọng và trình bày báo cáo dạng bảng biểu trực quan.";
+break;
+default:
+roleContext = "Bạn là một trợ lý AI toàn năng và chuyên nghiệp.";
+}
+
+let optimizedPrompt = `[VAI TRÒ & NGỮ CẢNH]\n${roleContext}\n\n`;
+optimizedPrompt += `[NHIỆM VỤ CỦA BẠN]\nDựa trên yêu cầu dưới đây, hãy thực thi và phản hồi một cách xuất sắc nhất:\n"${input.trim()}"\n\n`;
+optimizedPrompt += `[YÊU CẦU ĐẦU RA]\n- Trình bày mạch lạc, sử dụng định dạng Markdown (tiêu đề, danh sách dòng, bôi đen).\n- Trực diện vào câu hỏi, không rập khuôn, không lặp lại từ ngữ thừa.\n- Ngôn ngữ mặc định: Tiếng Việt chuẩn xác.`;
+
+output.value = optimizedPrompt;
+calculateTokens(optimizedPrompt);
+showToast("🤖 Đã cấu trúc khung Prompt AI tiêu chuẩn!", "border-blue-800 text-blue-400");
+
+// KÍCH HOẠT KIẾM TIỀN: Bung tab quảng cáo liên kết Linkvertise của bạn
+window\.open("direct-link.net", "\_blank");
+}
+
+// [LOGIC CỘT 3]: Thuật toán ước tính Tokens tương đối dựa trên tổ hợp từ ký tự tiếng Việt
+function calculateTokens(text) {
+const statsOutput = document.getElementById('stats-output');
+if (!statsOutput) return;
+
+if (!text) {
+statsOutput.innerText = `~0 Tokens`;
+return;
+}
+
+const wordCount = text.trim().split(/\s+/).filter(w => w !== '').length;
+const estimatedTokens = Math.ceil(wordCount \* 1.35) + Math.ceil(text.length \* 0.05);
+statsOutput.innerText = `~${estimatedTokens.toLocaleString()} Tokens`;
+}
+
+// [LOGIC CỘT 3]: Ghi nhận sao chép văn bản đầu ra vào Clipboard hệ thống
+function copyOutput() {
+const output = document.getElementById('output-text');
+if (!output || !output.value.trim()) {
+showToast("⚠️ Không tìm thấy dữ liệu kết quả để tiến hành sao chép!", "border-amber-700 text-amber-400");
+return;
+}
+
+if (navigator.clipboard && window\.isSecureContext) {
+navigator.clipboard.writeText(output.value)
+.then(() => {
+showToast("📋 Đã sao chép toàn bộ kết quả thành công!", "border-emerald-800 text-emerald-400");
+})
+.catch(() => fallbackCopy(output));
+} else {
+fallbackCopy(output);
+}
+}
+
+// Phương thức chạy dự phòng đối với trình duyệt cũ hoặc một số hệ điều hành di động
+function fallbackCopy(textarea) {
+try {
+textarea.select();
+document.execCommand('copy');
+showToast("📋 Đã sao chép kết quả thành công!", "border-emerald-800 text-emerald-400");
+} catch (err) {
+showToast("❌ Trình duyệt không hỗ trợ sao chép tự động, vui lòng nhấn Ctrl+C", "border-rose-800 text-rose-400");
+}
+}
