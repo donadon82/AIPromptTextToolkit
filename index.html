@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Prompt & Text Toolkit - Tối Ưu Câu Lệnh Miễn Phí</title>
+    <!-- Tích hợp Tailwind CSS để hiển thị giao diện mượt mà -->
     <script src="https://jsdelivr.net"></script>
     <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
     <style>
@@ -13,17 +14,19 @@
     </style>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col justify-between">
+    
+    <!-- KHỐI QUẢNG CÁO ĐẦU TRANG -->
     <div class="w-full bg-slate-950/80 border-b border-slate-800 p-2 text-center text-xs text-slate-500 font-mono tracking-wider">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="1111111111" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
+
+    <!-- TIÊU ĐỀ TRANG -->
     <header class="max-w-7xl mx-auto w-full px-4 pt-6 text-center">
         <h1 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-1 tracking-tight">AI Prompt & Text Toolkit</h1>
         <p class="text-slate-400 text-xs max-w-xl mx-auto">Làm sạch văn bản, đếm token và tự động nâng cấp câu lệnh chuyên nghiệp cho ChatGPT, Claude, DeepSeek.</p>
     </header>
-    <main class="max-w-7xl mx-auto w-full px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow">
-        <!-- Cột 1, Cột 2 và Cột 3 giao diện như mã nguồn tiêu chuẩn -->
-    </main>
+
     <!-- KHU VỰC CÔNG CỤ CHÍNH (GIAO DIỆN 3 CỘT ĐẸP MẮT) -->
     <main class="max-w-7xl mx-auto w-full px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow">
         
@@ -38,7 +41,6 @@
                     placeholder="Dán văn bản bị dính khoảng trắng thừa, dính dòng trống hoặc định dạng lỗi hàng ngang từ Excel/PDF vào đây..." oninput="updateStats('input-clean', 'stats-clean')"></textarea>
                 <div class="text-[10px] text-slate-500 mt-1 flex justify-between">
                     <span>Tự bẻ dòng dọc và xóa dòng trống.</span>
-                    <!-- NÚT XÓA NHANH CỘT 1 -->
                     <button onclick="clearContent('input-clean', 'stats-clean')" class="text-rose-400 hover:text-rose-300 font-bold cursor-pointer transition-all">✖ Xóa sạch</button>
                 </div>
             </div>
@@ -63,7 +65,6 @@
                     placeholder="Nhập ý tưởng câu lệnh ngắn của bạn. Ví dụ: 'Viết bài bán quần áo mùa hè' hoặc 'Giải thích đoạn code sau'..." oninput="updateStats('input-prompt', 'stats-prompt')"></textarea>
                 <div class="text-[10px] text-slate-500 mt-1 flex justify-between">
                     <span id="stats-prompt">0 kí tự</span>
-                    <!-- NÚT XÓA NHANH CỘT 2 -->
                     <button onclick="clearContent('input-prompt', 'stats-prompt')" class="text-rose-400 hover:text-rose-300 font-bold cursor-pointer transition-all">✖ Xóa sạch</button>
                 </div>
             </div>
@@ -83,7 +84,6 @@
                     readonly placeholder="Kết quả xử lý từ Cột 1 hoặc Cột 2 sẽ tự động xuất hiện tại đây..." onclick="this.select()"></textarea>
                 <div class="text-[10px] text-slate-500 mt-1 flex justify-between">
                     <span>Mẹo: Click vào ô để tự động bôi đen nhanh.</span>
-                    <!-- NÚT XÓA NHANH CỘT 3 -->
                     <button onclick="clearOutput()" class="text-rose-400 hover:text-rose-300 font-bold cursor-pointer transition-all">✖ Xóa sạch</button>
                 </div>
             </div>
@@ -91,14 +91,14 @@
                 📋 SAO CHÉP KẾT QUẢ (COPY)
             </button>
         </div>
-
     </main>
-    <!-- VÙNG HIỂN THỊ TRẠNG THÁI & THÔNG BÁO -->
+
+    <!-- VÙNG HIỂN THỊ TRẠNG THÁI & THÔNG BÁO (TOAST MESSAGE) -->
     <section class="max-w-7xl mx-auto w-full px-4 mb-4">
         <div id="toast-message" class="hidden p-3 bg-slate-950 border rounded-lg text-xs font-mono text-center transition-all"></div>
     </section>
 
-    <!-- KHỐI QUẢNG CÁO CHÂN TRANG TRUNG TÂM (LƯỢT VIEW CAO NHẤT) -->
+    <!-- KHỐI QUẢNG CÁO CHÂN TRANG TRUNG TÂM -->
     <section class="max-w-4xl mx-auto w-full px-4 mb-6 text-center">
         <ins class="adsbygoogle"
              style="display:block"
@@ -106,9 +106,7 @@
              data-ad-slot="2222222222"
              data-ad-format="fluid"
              data-ad-layout-key="-gw-3+1f-3d+2z"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </section>
 
     <!-- FOOTER CHÂN TRANG -->
@@ -116,123 +114,200 @@
         &copy; 2026 AI Prompt & Text Toolkit. Các tác vụ chạy 100% Client-side bằng JavaScript ẩn danh bảo mật.
     </footer>
 
-    <!-- TOÀN BỘ LOGIC XỬ LÝ JAVASCRIPT KHÔNG TREO MÁY -->
+    <!-- LỚP XỬ LÝ LOGIC JAVASCRIPT THUẦN (CLIENT-SIDE) -->
     <script>
-        // Cập nhật bộ đếm kí tự thời gian thực khi gõ
+        // 1. Cập nhật thời gian thực số lượng ký tự khi gõ/dán
         function updateStats(inputId, statsId) {
-            let text = document.getElementById(inputId).value;
-            document.getElementById(statsId).innerText = text.length.toLocaleString() + " kí tự";
+            const textarea = document.getElementById(inputId);
+            const stats = document.getElementById(statsId);
+            if (textarea && stats) {
+                const count = textarea.value.length;
+                stats.innerText = `${count.toLocaleString()} kí tự`;
+            }
         }
 
-        // Tính toán ước lượng Tokens dựa trên đặc trưng ngôn ngữ (1 từ tiếng Việt ~ 1.5 token)
-        function estimateTokens(text) {
-            if (!text) return 0;
-            let words = text.trim().split(/\s+/).length;
-            return Math.ceil(words * 1.5);
-        }
-
-        // Hiện thông báo trạng thái mượt mà
-        function showToast(msg, isSuccess = true) {
-            let toast = document.getElementById("toast-message");
-            toast.classList.remove("hidden");
-            toast.style.borderColor = isSuccess ? "#10b981" : "#ef4444"; 
-            toast.style.color = isSuccess ? "#34d399" : "#f87171";
-            toast.innerHTML = msg;
-            setTimeout(() => {
-                toast.classList.add("hidden");
-            }, 3000);
-        }
-
-        // TÍNH NĂNG MỚI: Xóa dữ liệu nhanh cho Cột 1 và Cột 2
+        // 2. Nút dọn dẹp nhanh vùng nhập liệu (Cột 1 & Cột 2)
         function clearContent(inputId, statsId) {
-            document.getElementById(inputId).value = "";
-            document.getElementById(statsId).innerText = "0 kí tự";
-            showToast("🧹 Đã xóa sạch nội dung ô nhập!");
+            const textarea = document.getElementById(inputId);
+            const stats = document.getElementById(statsId);
+            if (textarea && stats) {
+                textarea.value = '';
+                stats.innerText = '0 kí tự';
+                showToast("🧹 Đã xóa sạch vùng dữ liệu đầu vào", "border-rose-800/80 text-rose-400");
+            }
         }
 
-        // TÍNH NĂNG MỚI: Xóa dữ liệu nhanh cho Cột Kết quả (Cột 3)
+        // 3. Nút dọn dẹp nhanh vùng kết quả (Cột 3)
         function clearOutput() {
-            document.getElementById("output-text").value = "";
-            document.getElementById("stats-output").innerText = "~0 Tokens";
-            showToast("🧹 Đã dọn sạch ô kết quả đầu ra!");
+            const output = document.getElementById('output-text');
+            const statsOutput = document.getElementById('stats-output');
+            if (output && statsOutput) {
+                output.value = '';
+                statsOutput.innerText = '~0 Tokens';
+                showToast("🧹 Đã làm trống vùng kết quả", "border-rose-800/80 text-rose-400");
+            }
         }
 
-        // Xử lý làm sạch văn bản (Cột 1)
-        function executeClean() {
-            let rawText = document.getElementById("input-clean").value;
-            if (!rawText.trim()) {
-                showToast("⚠️ Vui lòng nhập hoặc dán văn bản thô cần làm sạch!", false);
-                return;
-            }
-            
-            let cleanedText = rawText
-                .split('\n')
-                .map(line => line.trim().replace(/\s+/g, ' '))
-                .filter(line => line.length > 0)
-                .join('\n');
+        // 4. Hàm điều phối và tạo hiệu ứng thông báo động (Toast)
+        function showToast(message, borderClass) {
+            const toast = document.getElementById('toast-message');
+            if (toast) {
+                toast.className = `p-3 bg-slate-950 border rounded-lg text-xs font-mono text-center transition-all ${borderClass}`;
+                toast.innerText = message;
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt & Text Toolkit - Tối Ưu Câu Lệnh Miễn Phí</title>
+    <!-- Tích hợp Tailwind CSS để hiển thị giao diện mượt mà -->
+    <script src="https://jsdelivr.net"></script>
+    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col justify-between">
+    
+    <!-- KHỐI QUẢNG CÁO ĐẦU TRANG -->
+    <div class="w-full bg-slate-950/80 border-b border-slate-800 p-2 text-center text-xs text-slate-500 font-mono tracking-wider">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="1111111111" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
-            document.getElementById("output-text").value = cleanedText;
-            document.getElementById("stats-output").innerText = "~" + estimateTokens(cleanedText).toLocaleString() + " Tokens";
-            showToast("✨ Đã làm sạch văn bản thành công!");
+    <!-- TIÊU ĐỀ TRANG -->
+    <header class="max-w-7xl mx-auto w-full px-4 pt-6 text-center">
+        <h1 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-1 tracking-tight">AI Prompt & Text Toolkit</h1>
+        <p class="text-slate-400 text-xs max-w-xl mx-auto">Làm sạch văn bản, đếm token và tự động nâng cấp câu lệnh chuyên nghiệp cho ChatGPT, Claude, DeepSeek.</p>
+    </header>
+
+    <!-- KHU VỰC CÔNG CỤ CHÍNH (GIAO DIỆN 3 CỘT ĐẸP MẮT) -->
+    <main class="max-w-7xl mx-auto w-full px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow">
+        
+        <!-- CỘT 1: LÀM SẠCH VĂN BẢN (TEXT CLEANER) -->
+        <div class="bg-slate-800/40 p-4 border border-slate-800 rounded-xl flex flex-col justify-between shadow-xl">
+            <div>
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-sm font-bold text-cyan-400 flex items-center gap-1.5">🧹 Làm Sạch Văn Bản Thô</h2>
+                    <span id="stats-clean" class="text-[11px] text-slate-500 font-mono">0 kí tự</span>
+                </div>
+                <textarea id="input-clean" class="w-full p-3 bg-slate-950 border border-slate-800 rounded-lg text-xs font-mono focus:outline-none focus:border-cyan-400 resize-none h-44 transition-all" 
+                    placeholder="Dán văn bản bị dính khoảng trắng thừa, dính dòng trống hoặc định dạng lỗi hàng ngang từ Excel/PDF vào đây..." oninput="updateStats('input-clean', 'stats-clean')"></textarea>
+                <div class="text-[10px] text-slate-500 mt-1 flex justify-between">
+                    <span>Tự bẻ dòng dọc và xóa dòng trống.</span>
+                    <button onclick="clearContent('input-clean', 'stats-clean')" class="text-rose-400 hover:text-rose-300 font-bold cursor-pointer transition-all">✖ Xóa sạch</button>
+                </div>
+            </div>
+            <button onclick="executeClean()" class="mt-4 w-full py-2.5 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-slate-950 text-xs font-black rounded-lg shadow-md cursor-pointer transition-all">
+                ✨ LÀM SẠCH VĂN BẢN NGAY
+            </button>
+        </div>
+
+        <!-- CỘT 2: TỐI ƯU CÂU LỆNH AI (PROMPT OPTIMIZER) -->
+        <div class="bg-slate-800/40 p-4 border border-slate-800 rounded-xl flex flex-col justify-between shadow-xl">
+            <div>
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-sm font-bold text-blue-400 flex items-center gap-1.5">🚀 Nâng Cấp Prompt Chuyên Nghiệp</h2>
+                    <select id="prompt-role" class="bg-slate-950 border border-slate-800 text-[11px] text-slate-400 rounded px-1.5 py-0.5 outline-none">
+                        <option value="expert">Chuyên Gia Tổng Hợp</option>
+                        <option value="coder">Lập Trình Viên Cao Cấp</option>
+                        <option value="copywriter">Nhà Văn / Copywriter</option>
+                        <option value="analyst">Nhà Phân Tích Dữ Liệu</option>
+                    </select>
+                </div>
+                <textarea id="input-prompt" class="w-full p-3 bg-slate-950 border border-slate-800 rounded-lg text-xs font-mono focus:outline-none focus:border-blue-400 resize-none h-44 transition-all" 
+                    placeholder="Nhập ý tưởng câu lệnh ngắn của bạn. Ví dụ: 'Viết bài bán quần áo mùa hè' hoặc 'Giải thích đoạn code sau'..." oninput="updateStats('input-prompt', 'stats-prompt')"></textarea>
+                <div class="text-[10px] text-slate-500 mt-1 flex justify-between">
+                    <span id="stats-prompt">0 kí tự</span>
+                    <button onclick="clearContent('input-prompt', 'stats-prompt')" class="text-rose-400 hover:text-rose-300 font-bold cursor-pointer transition-all">✖ Xóa sạch</button>
+                </div>
+            </div>
+            <button onclick="executeOptimizePrompt()" class="mt-4 w-full py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-slate-950 text-xs font-black rounded-lg shadow-md cursor-pointer transition-all">
+                🤖 ĐÓNG KHUNG PROMPT CHUẨN AI
+            </button>
+        </div>
+
+        <!-- CỘT 3: KẾT QUẢ ĐẦU RA (OUTPUT & TOKEN ESTIMATOR) -->
+        <div class="bg-slate-800/40 p-4 border border-slate-800 rounded-xl flex flex-col justify-between shadow-xl">
+            <div>
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-sm font-bold text-emerald-400 flex items-center gap-1.5">📥 Kết Quả Văn Bản Sạch</h2>
+                    <span id="stats-output" class="text-[11px] text-emerald-400/80 font-mono font-bold">~0 Tokens</span>
+                </div>
+                <textarea id="output-text" class="w-full p-3 bg-slate-950/60 border border-slate-800 rounded-lg text-xs font-mono text-slate-300 focus:outline-none resize-none h-44 select-all cursor-pointer" 
+                    readonly placeholder="Kết quả xử lý từ Cột 1 hoặc Cột 2 sẽ tự động xuất hiện tại đây..." onclick="this.select()"></textarea>
+                <div class="text-[10px] text-slate-500 mt-1 flex justify-between">
+                    <span>Mẹo: Click vào ô để tự động bôi đen nhanh.</span>
+                    <button onclick="clearOutput()" class="text-rose-400 hover:text-rose-300 font-bold cursor-pointer transition-all">✖ Xóa sạch</button>
+                </div>
+            </div>
+            <button id="btn-copy" onclick="copyOutput()" class="mt-4 w-full py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-slate-950 text-xs font-black rounded-lg shadow-md cursor-pointer transition-all">
+                📋 SAO CHÉP KẾT QUẢ (COPY)
+            </button>
+        </div>
+    </main>
+
+    <!-- VÙNG HIỂN THỊ TRẠNG THÁI & THÔNG BÁO -->
+    <section class="max-w-7xl mx-auto w-full px-4 mb-4">
+        <div id="toast-message" class="hidden p-3 bg-slate-950 border rounded-lg text-xs font-mono text-center transition-all"></div>
+    </section>
+
+    <!-- KHỐI QUẢNG CÁO CHÂN TRANG TRUNG TÂM -->
+    <section class="max-w-4xl mx-auto w-full px-4 mb-6 text-center">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="2222222222"
+             data-ad-format="fluid"
+             data-ad-layout-key="-gw-3+1f-3d+2z"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <!-- FOOTER CHÂN TRANG -->
+    <footer class="border-t border-slate-950 py-3 text-center text-[10px] text-slate-600 tracking-wide bg-slate-950/50">
+        &copy; 2026 AI Prompt & Text Toolkit. Các tác vụ chạy 100% Client-side bằng JavaScript ẩn danh bảo mật.
+    </footer>
+
+    <!-- KHỐI SCRIPT LOGIC ĐÃ ĐƯỢC CHUẨN HÓA CÚ PHÁP -->
+    <script>
+        // Các hàm phụ trợ cập nhật stats và xóa nội dung đầu vào
+        function updateStats(inputId, statsId) {
+            const textarea = document.getElementById(inputId);
+            const stats = document.getElementById(statsId);
+            if (textarea && stats) {
+                stats.innerText = `${textarea.value.length.toLocaleString()} kí tự`;
+            }
         }
 
-        // Xử lý nâng cấp cấu trúc Prompt chuyên nghiệp (Cột 2)
-        function executeOptimizePrompt() {
-            let rawPrompt = document.getElementById("input-prompt").value;
-            let role = document.getElementById("prompt-role").value;
-
-            if (!rawPrompt.trim()) {
-                showToast("⚠️ Vui lòng nhập ý tưởng câu lệnh trước khi đóng khung!", false);
-                return;
+        function clearContent(inputId, statsId) {
+            const textarea = document.getElementById(inputId);
+            const stats = document.getElementById(statsId);
+            if (textarea && stats) {
+                textarea.value = '';
+                stats.innerText = '0 kí tự';
+                showToast("🧹 Đã xóa sạch vùng dữ liệu đầu vào", "border-rose-800 text-rose-400");
             }
-
-            let optimizedPrompt = "";
-            
-            switch(role) {
-                case "expert":
-                    optimizedPrompt = `[Role]: Bạn là một Chuyên Gia Tổng Hợp và Phân Tích Thông Tin cấp cao.\\n[Context]: Tôi cần xử lý một vấn đề với yêu cầu cốt lõi dưới đây.\\n[Task]: Hãy phân tích chuyên sâu, tổ chức cấu trúc câu trả lời rõ ràng và thực hiện yêu cầu sau:\\n"${rawPrompt}"\\n[Output]: Trả lời dưới dạng danh sách chia phân mục chi tiết, ngắn gọn và đi thẳng vào giải pháp thực tế.`;
-                    break;
-                case "coder":
-                    optimizedPrompt = `[Role]: Bạn là một Lập Trình Viên Cao Cấp (Senior Fullstack Engineer) có tư duy tối ưu mã nguồn.\\n[Task]: Hãy viết mã, sửa lỗi hoặc tối ưu thuật toán cho bài toán lập trình sau:\\n"${rawPrompt}"\\n[Requirement]: Đảm bảo mã nguồn sạch (Clean Code), có comment giải thích ngắn gọn, chú trọng xử lý ngoại lệ (Exception Handling) và tối ưu hiệu năng.`;
-                    break;
-                case "copywriter":
-                    optimizedPrompt = `[Role]: Bạn là một Nhà Văn, Chuyên Gia Sáng Tạo Nội Dung và Copywriter chuyên nghiệp.\\n[Context]: Cần tạo ra một nội dung lôi cuốn, giữ chân độc giả lâu và có tỷ lệ chuyển đổi cao.\\n[Task]: Hãy triển khai bài viết dựa trên ý tưởng sau:\\n"${rawPrompt}"\\n[Format]: Giọng văn tự nhiên, mạch lạc, phân mảnh câu ngắn gọn, sử dụng tiêu đề phụ (subheadings) bắt mắt và thêm CTA ở cuối.`;
-                    break;
-                case "analyst":
-                    optimizedPrompt = `[Role]: Bạn là một Nhà Phân Tích Dữ Liệu và Hoạch Định Chiến Lược Doanh Nghiệp.\\n[Context]: Phân tích thông tin hoặc dữ liệu thô để tìm ra xu hướng và Insights giá trị.\\n[Task]: Tiến hành khảo sát, chấm điểm và bóc tách yêu cầu sau:\\n"${rawPrompt}"\\n[Format Output]: Trình bày dữ liệu khách quan, chỉ rõ các điểm số chính hoặc mô hình SWOT (Điểm mạnh/Điểm yếu) hành động ưu tiên.`;
-                    break;
-            }
-
-            document.getElementById("output-text").value = optimizedPrompt;
-            document.getElementById("stats-output").innerText = "~" + estimateTokens(optimizedPrompt).toLocaleString() + " Tokens";
-            showToast("🤖 Đã tối ưu hóa cấu trúc câu lệnh chuẩn AI thành công!");
         }
 
-        // Xử lý Sao chép kết quả (Cột 3)
-        function copyOutput() {
-            let outputText = document.getElementById("output-text").value;
-            if (!outputText.trim()) {
-                showToast("⚠️ Không có nội dung kết quả để sao chép!", false);
-                return;
+        function clearOutput() {
+            const output = document.getElementById('output-text');
+            const statsOutput = document.getElementById('stats-output');
+            if (output && statsOutput) {
+                output.value = '';
+                statsOutput.innerText = '~0 Tokens';
+                showToast("🧹 Đã làm trống vùng kết quả", "border-rose-800 text-rose-400");
             }
-
-            navigator.clipboard.writeText(outputText).then(() => {
-                let btn = document.getElementById("btn-copy");
-                let originalText = btn.innerHTML;
-                
-                btn.innerHTML = "✓ ĐÃ SAO CHÉP!";
-                btn.style.background = "linear-gradient(to right, #34d399, #059669)"; 
-                
-                showToast("📋 Đã copy kết quả vào Clipboard!");
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = ""; 
-                }, 2000);
-            }).catch(() => {
-                showToast("❌ Trình duyệt không hỗ trợ tự động sao chép!", false);
-            });
         }
-    </script>
-</body>
-</html>
+
+        function showToast(message, borderClass) {
+            const toast = document.getElementById('toast-message');
+            if (toast) {
+                toast.className = `p-3 bg-slate-950 border rounded-lg text-xs font-mono text-center transition-all ${borderClass}`;
+                toast.innerText = message;
+                toast.classList.remove('hidden');
+
+                // Tự động ẩn hộp thoại sau 3 giây để tránh chiếm diện tích
+                if (window.toastTimeout) clearTimeout(window.toastTimeout);
+                window.toastTimeout = setTimeout(() => {
